@@ -14257,9 +14257,31 @@ a.anchor-link {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Template-mySociety-Jupyter-notebook">Template mySociety Jupyter notebook<a class="anchor-link" href="#Template-mySociety-Jupyter-notebook">&#182;</a></h1><p>Template with submodule for helper functions, and dockerfile to set chrome up correctly for charts.</p>
+<p>This is useful for when the readme should include some analysis of files elsewhere in the repo and you don't want to copy and paste.</p>
+<p><code>readme.ipynb</code> can be set up as a notebook, which then renders itself to <code>readme.md</code>.</p>
+<p>Example of this approach: <a href="https://github.com/mysociety/composite_uk_imd">https://github.com/mysociety/composite_uk_imd</a></p>
+<h2 id="How-to-use">How to use<a class="anchor-link" href="#How-to-use">&#182;</a></h2><p>Should just work in VSCode, be careful if you start storing config in <code>devcontainer.json</code> as currently not excluded from git.</p>
+<p>pandas and altair are automatically loaded as <code>pd</code> and <code>alt</code>. The mysociety theme is already initalised.</p>
+<p>Examples below show basic usage.</p>
+<p>By default <code>render_to_markdown</code> will not print the input box (so code can be hidden). Add <code>include_input=True</code> as below to include it.</p>
+<p>The chrome reference can be removed from the dockerfile if not doing any chart rendering. Currently the blank requirements.txt is not referenced in the dockerfile to avoid a layer, you'll need to add that if adding more requirements to the notebook.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Example-code">Example code<a class="anchor-link" href="#Example-code">&#182;</a></h1><p>Start the notebook by pulling in the general set of helpers. Start the codeblock with <code>#HIDE</code> to exclude it from being displayed in render (example at top of <code>readme.ipynb</code>).</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">notebook_helper</span> <span class="kn">import</span> <span class="o">*</span>
@@ -14273,26 +14295,13 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Template-mySociety-Jupyter-notebook">Template mySociety Jupyter notebook<a class="anchor-link" href="#Template-mySociety-Jupyter-notebook">&#182;</a></h1><p>Template with submodule for helper functions, and dockerfile to set chrome up correctly for charts. 
-The chrome reference can be removed from the dockerfile if not doing any chart rendering.</p>
-<p>This is useful for when the readme should include some analysis of files elsewhere in the repo and you don't want to copy and paste.</p>
-<p>The downside of this approach is the readme.md cannot then be edited directly.</p>
-<p><code>readme.ipynb</code> can be set up as a notebook, which then renders itself to <code>readme.md</code>.</p>
-<p>Example of this approach: <a href="https://github.com/mysociety/composite_uk_imd">https://github.com/mysociety/composite_uk_imd</a></p>
-<p>pandas and altair are automatically loaded as <code>pd</code> and <code>alt</code>. The mysociety theme is already initalised.</p>
-<p>Examples below show basic usage.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Example-table">Example table<a class="anchor-link" href="#Example-table">&#182;</a></h2><p>This shows a table being rendered as markdown</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -14344,125 +14353,9 @@ The chrome reference can be removed from the dockerfile if not doing any chart r
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>And as HTML:</p>
+<p>You can just render as HTML with <code>display(source)</code> but github markdown doesn't like the styling that gets attached to this.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Vertical</th>
-      <th>Horizontal</th>
-      <th>double_h</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>A</td>
-      <td>28</td>
-      <td>56</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>B</td>
-      <td>55</td>
-      <td>110</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>C</td>
-      <td>43</td>
-      <td>86</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>D</td>
-      <td>91</td>
-      <td>182</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>E</td>
-      <td>81</td>
-      <td>162</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>F</td>
-      <td>53</td>
-      <td>106</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>G</td>
-      <td>19</td>
-      <td>38</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>H</td>
-      <td>87</td>
-      <td>174</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>I</td>
-      <td>52</td>
-      <td>104</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14499,7 +14392,7 @@ The chrome reference can be removed from the dockerfile if not doing any chart r
 
 
 <div class="jp-RenderedImage jp-OutputArea-output jp-OutputArea-executeResult">
-<img src="_notebook_resources/output_7_0.png"
+<img src="_notebook_resources/readme_8_0.png"
 >
 </div>
 
