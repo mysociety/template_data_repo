@@ -66,8 +66,6 @@ source
 
 
 
-You can just render as HTML with `display(source)` but github markdown doesn't like the styling that gets attached to this. 
-
 # Example chart
 
 
@@ -83,6 +81,6 @@ chart.display(logo=True, caption="Data source goes here")
 
 
     
-![](_notebook_resources/readme_8_0.png)
+![](_notebook_resources/readme_7_0.png)
     
 
