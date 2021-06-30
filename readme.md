@@ -29,6 +29,7 @@ Start the notebook by pulling in the general set of helpers. Start the codeblock
 
 ```python
 from notebook_helper import *
+notebook_setup()
 ```
 
 ## Example table
@@ -44,20 +45,25 @@ source = pd.DataFrame({
 
 source["double_h"] = source["Horizontal"] * 2
 
-markdown_table(source)
+source
 ```
 
-| Vertical   |   Horizontal |   double_h |
-|------------|--------------|------------|
-| A          |           28 |         56 |
-| B          |           55 |        110 |
-| C          |           43 |         86 |
-| D          |           91 |        182 |
-| E          |           81 |        162 |
-| F          |           53 |        106 |
-| G          |           19 |         38 |
-| H          |           87 |        174 |
-| I          |           52 |        104 |
+
+
+
+| Vertical | Horizontal | double_h |
+| :--- | :--- | :--- |
+| A | 28 | 56 |
+| B | 55 | 110 |
+| C | 43 | 86 |
+| D | 91 | 182 |
+| E | 81 | 162 |
+| F | 53 | 106 |
+| G | 19 | 38 |
+| H | 87 | 174 |
+| I | 52 | 104 |
+
+
 
 
 You can just render as HTML with `display(source)` but github markdown doesn't like the styling that gets attached to this. 
@@ -66,17 +72,17 @@ You can just render as HTML with `display(source)` but github markdown doesn't l
 
 
 ```python
-alt.Chart(source).mark_bar().encode(
+chart = alt.Chart(source).mark_bar().encode(
     y='Vertical',
     x='Horizontal'
 ).properties(title="This is an example chart, with the right fonts")
+
+chart.display(logo=True, caption="Data source goes here")
+
 ```
 
 
-
-
     
-![png](_notebook_resources/readme_8_0.png)
+![](_notebook_resources/readme_8_0.png)
     
-
 

@@ -24,5 +24,6 @@
         "--disable=E1101",
         "--disable=W5101",
         "--disable=E1123"   
-   ],
+],
+"jupyter.jupyterServerType": "local",
 }
