@@ -13982,6 +13982,7 @@ a.anchor-link {
 <p>Examples below show basic usage.</p>
 <p>By default <code>render_to_markdown</code> will not print the input box (so code can be hidden). Add <code>include_input=True</code> as below to include it.</p>
 <p>The chrome reference can be removed from the dockerfile if not doing any chart rendering. Currently the blank requirements.txt is not referenced in the dockerfile to avoid a layer, you'll need to add that if adding more requirements to the notebook.</p>
+<p>The Dockerfile is set up to work with being viewed on binder.</p>
 
 </div>
 </div>
@@ -14145,12 +14146,13 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Vertical&#39;</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horizontal&#39;</span>
-<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;This is an example chart, with the right fonts&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="p">(</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span>
+         <span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Vertical&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horizontal&#39;</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;This is an example chart, with the right fonts&quot;</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">display_options</span><span class="p">(</span><span class="n">logo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;Data source goes here&quot;</span><span class="p">))</span>
 
-<span class="n">chart</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">logo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;Data source goes here&quot;</span><span class="p">)</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
 </pre></div>
 
      </div>

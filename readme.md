@@ -21,6 +21,7 @@ By default `render_to_markdown` will not print the input box (so code can be hid
 
 The chrome reference can be removed from the dockerfile if not doing any chart rendering. Currently the blank requirements.txt is not referenced in the dockerfile to avoid a layer, you'll need to add that if adding more requirements to the notebook.
 
+The Dockerfile is set up to work with being viewed on binder.
 
 # Example code
 
@@ -70,12 +71,13 @@ source
 
 
 ```python
-chart = alt.Chart(source).mark_bar().encode(
-    y='Vertical',
-    x='Horizontal'
-).properties(title="This is an example chart, with the right fonts")
+chart = (Chart(source)
+         .mark_bar()
+         .encode(y='Vertical', x='Horizontal')
+         .properties(title="This is an example chart, with the right fonts")
+         .display_options(logo=True, caption="Data source goes here"))
 
-chart.display(logo=True, caption="Data source goes here")
+chart.display()
 
 ```
 
