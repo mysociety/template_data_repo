@@ -3,17 +3,17 @@
 echo "--------------"
 echo "Running pytest"
 echo "--------------"
-python -m poetry run pytest
+poetry run pytest
 pytestexit=$?
 echo "--------------"
 echo "Running black"
 echo "--------------"
-python -m poetry run black . --check
+poetry run black . --check
 blackexit=$?
 echo "--------------"
 echo "Running pyright"
 echo "--------------"
-python -m poetry run pyright
+poetry run pyright
 pyrightexit=$?
 
 echo "Pytest status: $pytestexit"
