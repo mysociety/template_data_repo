@@ -3,7 +3,7 @@ title: template_data_repo
 description: Standardised template for mysociety data repositories
 
 baseurl: "/template_data_repo"
-url: "https://mysociety.github.io"
+url: "https://pages.mysociety.org"
 
 collections:
   versionlists:
