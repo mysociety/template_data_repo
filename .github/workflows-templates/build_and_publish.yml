@@ -26,7 +26,7 @@ jobs:
           submodules: 'recursive'
           
       - name: Run tests and try and build project
-        uses: ./.github/actions/in-dev-container
+        uses: mysociety/run-in-devcontainer@v1
         with:
           run: |
             export PATH="/root/.local/bin:$PATH"
