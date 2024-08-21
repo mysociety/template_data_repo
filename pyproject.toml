@@ -4,6 +4,10 @@ version = "0.1.0"
 description = "Standardised template for mysociety data repositories"
 authors = []
 
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
 data_common = { path = "src/data_common/", develop = true }
