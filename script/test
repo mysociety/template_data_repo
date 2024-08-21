@@ -6,10 +6,12 @@ echo "--------------"
 poetry run pytest
 pytestexit=$?
 echo "--------------"
-echo "Running black"
+echo "Running ruff"
 echo "--------------"
-poetry run black . --check
-blackexit=$?
+poetry run ruff check .
+ruffcheckexit=$?
+poetry run ruff format . --check
+ruffformatexit=$?
 echo "--------------"
 echo "Running pyright"
 echo "--------------"
@@ -17,10 +19,11 @@ poetry run pyright
 pyrightexit=$?
 
 echo "Pytest status: $pytestexit"
-echo "Black status: $blackexit"
+echo "Ruff Check status: $ruffcheckexit"
+echo "Ruff Format status: $ruffformatexit"
 echo "Pyright status: $pyrightexit"
 
-sum="$(($pytestexit + $blackexit + $pyrightexit))"
+sum="$(($pytestexit + $pyrightexit + $ruffcheckexit + $ruffformatexit))"
 
 if [ "$sum" != "0" ]; then
     exit 1
