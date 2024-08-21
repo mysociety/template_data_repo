@@ -3,7 +3,7 @@ services:
     image: mysociety/template_data_repo:${TAG:-latest}
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     working_dir: /workspaces/template_data_repo      
     volumes:
       - ./:/workspaces/template_data_repo/
