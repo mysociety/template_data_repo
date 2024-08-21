@@ -22,7 +22,7 @@
         "**/requirements{/**,*}.{txt,in}": "pip-requirements"
     },
     "editor.codeActionsOnSave": {
-        "source.organizeImports": true,
+        "source.organizeImports": "explicit"
     },
     "ltex.language": "en-GB",
     "ltex.ltex-ls.path": "/ltex/ltex-ls-15.2.0/",
