@@ -25,7 +25,8 @@ jobs:
         uses: mysociety/run-in-devcontainer@v1
         with:
           run: |
+            uv sync
             export PATH="/root/.local/bin:$PATH"
             script/test
-            dataset build --all
-            dataset version auto --auto-ban major --all
+            uv run dataset build --all
+            uv run dataset version auto --auto-ban major --all

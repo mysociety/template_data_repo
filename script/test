@@ -3,19 +3,19 @@
 echo "--------------"
 echo "Running pytest"
 echo "--------------"
-poetry run pytest
+uv run pytest
 pytestexit=$?
 echo "--------------"
 echo "Running ruff"
 echo "--------------"
-poetry run ruff check .
+uv run ruff check .
 ruffcheckexit=$?
-poetry run ruff format . --check
+uv run ruff format . --check
 ruffformatexit=$?
 echo "--------------"
 echo "Running pyright"
 echo "--------------"
-poetry run pyright
+uv run pyright
 pyrightexit=$?
 
 echo "Pytest status: $pytestexit"
