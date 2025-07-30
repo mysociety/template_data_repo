@@ -16,7 +16,6 @@
 				"ms-python.vscode-pylance",
 				"ms-azuretools.vscode-docker",
 				"valentjn.vscode-ltex",
-				"ms-python.black-formatter",
 				"charliermarsh.ruff"
 			]
 		},

@@ -1,24 +1,31 @@
-[tool.poetry]
+
+
+[project]
 name = "template_data_repo"
 version = "0.1.0"
 description = "Standardised template for mysociety data repositories"
 authors = []
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "data_common"
+]
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.dependencies]
-python = ">=3.10,<3.11"
-data_common = { path = "src/data_common/", develop = true }
-
-[tool.poetry.dev-dependencies]
-pytest = "^7.1.1"
-
-[tool.poetry.scripts]
-project = 'template_data_repo.__main__:main'
+[project.scripts]
+project = "template_data_repo.__main__:main"
 notebook = "data_common.notebookcli.__main__:run"
 dataset = "data_common.dataset.__main__:run"
+
+[dependency-groups]
+dev = ["pytest>=7.1.1,<8"]
+
+[tool.uv]
+
+[tool.uv.sources]
+data_common = { path = "src/data_common/", editable = true }
+
+[build-system]
+requires = ["uv_build>=0.8.3,<0.9.0"]
+build-backend = "uv_build"
 
 [tool.pyright]
 include = ["src", "notebooks"]
@@ -33,10 +40,9 @@ default_page_title = "Settings file defined title"
 [tool.dataset]
 dataset_dir = "data/packages"
 publish_dir = "docs/"
-publish_url = "https://pages.mysociety.org/template_data_repo/"
+publish_url = "https://pages.mysociety.org/parl_wq_interests/"
 credit_text = "If you find this data useful, please let us know to help us make the case for future funding."
 credit_url = "https://survey.alchemer.com/s3/6876792/Data-usage"
-
 
 [tool.ruff]
 extend-exclude = ["migrations", "*.pyi"]
@@ -53,7 +59,6 @@ ignore = [
     # line too long, sorted with formatter where it can be
     "E501", 
 ]
-
 
 [tool.ruff.lint.isort]
 known-first-party = ["hub"]

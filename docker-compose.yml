@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    working_dir: /workspaces/template_data_repo      
+    working_dir: /workspaces/template_data_repo
     volumes:
       - ./:/workspaces/template_data_repo/
+      - /workspaces/template_data_repo/.venv
