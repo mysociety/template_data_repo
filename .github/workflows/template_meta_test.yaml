@@ -41,7 +41,7 @@ jobs:
 
       - name: Setup required packages
         run: |
-          pip install pytest cookiecutter
+          python -m pip install pytest cookiecutter uv
 
       # run pytest, but with the UPDATE_TO_LATEST flag off. 
       - name: run pytest
