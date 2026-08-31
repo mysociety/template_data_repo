@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
 
-concurrency: 
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
@@ -15,7 +15,7 @@ jobs:
       contents: read
     steps:
       # checkout the meta template repo that is a cookiecutter/auto-repo
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           repository: mysociety/python-data-auto-template
           path: template
@@ -27,7 +27,7 @@ jobs:
           rm -r "template/{{ cookiecutter.repo_name }}"
 
       # checkout the latest version of the template-data-repo template
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           submodules: 'recursive'
           fetch-depth: 0
@@ -35,7 +35,7 @@ jobs:
           path: "template/{{ cookiecutter.repo_name }}"
           persist-credentials: false
 
-      - uses: actions/setup-python@a3e2e31b4c9277e485f7463143e5bd5447348a40 # v6.2.0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version: '3.11'
 
@@ -51,4 +51,4 @@ jobs:
           python -m pytest
         shell: bash
         env:
-          UPDATE_TO_LATEST: False
+          UPDATE_TO_LATEST: false
