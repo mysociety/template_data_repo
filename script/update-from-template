@@ -1,17 +1,13 @@
-#!/bin/bash 
+#!/bin/bash
+set -euo pipefail
 
-git remote rm template
-git remote add template https://github.com/mysociety/template_data_repo
+if git remote get-url template >/dev/null 2>&1; then
+    git remote set-url template https://github.com/mysociety/template_data_repo
+else
+    git remote add template https://github.com/mysociety/template_data_repo
+fi
 git fetch template
 git merge template/main
 
-cd src/data_common
-git fetch origin
-git pull origin main
-git checkout main
-
-cd ../..
-cd docs/theme
-git fetch origin
-git pull origin main
-git checkout main
+git submodule sync --recursive
+git submodule update --init --recursive

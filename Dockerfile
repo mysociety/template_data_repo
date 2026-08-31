@@ -1,12 +1,8 @@
-FROM python:3.10-bookworm
+FROM python:3.14-bookworm
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-COPY --from=ruby:2.7.1-slim /usr/local/ /usr/local/
-COPY --from=ruby:2.7.1-slim /usr/lib/x86_64-linux-gnu/libssl.so.1.1 \
-    /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 \
-    /usr/lib/x86_64-linux-gnu/
 
-ENV WORKSPACE_NAME  template_data_repo
+ENV WORKSPACE_NAME=template_data_repo
 ENV UV_LINK_MODE=symlink
 ENV PATH="/usr/local/bin:${PATH}"
 ENV PATH="/workspaces/$WORKSPACE_NAME/.venv/bin:${PATH}"

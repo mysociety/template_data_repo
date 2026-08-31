@@ -5,23 +5,34 @@ name = "template_data_repo"
 version = "0.1.0"
 description = "Standardised template for mysociety data repositories"
 authors = []
-requires-python = ">=3.10,<3.11"
+requires-python = ">=3.11,<3.15"
 dependencies = [
-    "data_common"
+    "data-common[dataset]",
 ]
 
 [project.scripts]
 project = "template_data_repo.__main__:main"
-notebook = "data_common.notebookcli.__main__:run"
-dataset = "data_common.dataset.__main__:run"
 
 [dependency-groups]
-dev = ["pytest>=7.1.1,<8"]
+test = [{ include-group = "render" }, "pytest>=8"]
+lint = ["ruff>=0.6.1"]
+type = ["pandas-stubs>=2.2", "pyright>=1.1.248"]
+notebook = ["data-common[notebook]", "jupyterlab>=4"]
+render = ["data-common[render]"]
+google = ["data-common[google]"]
+dev = [
+    { include-group = "test" },
+    { include-group = "lint" },
+    { include-group = "type" },
+]
 
 [tool.uv]
 
 [tool.uv.sources]
-data_common = { path = "src/data_common/", editable = true }
+data-common = { path = "src/data_common/", editable = true }
+
+[tool.pytest.ini_options]
+markers = ["notebook: exercises notebook execution and analysis bundle production"]
 
 [build-system]
 requires = ["uv_build>=0.8.3,<0.9.0"]
@@ -29,8 +40,7 @@ build-backend = "uv_build"
 
 [tool.pyright]
 include = ["src", "notebooks"]
-exclude=["src/data_common/typings"]
-stubPath="src/data_common/typings"
+exclude = ["src/data_common"]
 typeCheckingMode="basic"
 reportPrivateImportUsage="warning"
 
@@ -39,13 +49,13 @@ default_page_title = "Settings file defined title"
 
 [tool.dataset]
 dataset_dir = "data/packages"
-publish_dir = "docs/"
-publish_url = "https://pages.mysociety.org/parl_wq_interests/"
+publish_dir = "data/packages/_published"
+publish_url = "https://pages.mysociety.org/template_data_repo/datasets/"
 credit_text = "If you find this data useful, please let us know to help us make the case for future funding."
 credit_url = "https://survey.alchemer.com/s3/6876792/Data-usage"
 
 [tool.ruff]
-extend-exclude = ["migrations", "*.pyi"]
+extend-exclude = ["migrations", "*.pyi", "src/data_common"]
 
 [tool.ruff.lint]
 select = [
@@ -73,3 +83,25 @@ section-order = [
 
 [tool.ruff.lint.isort.sections]
 django = ["django"]
+
+[tool.dataset.site]
+title = "template_data_repo"
+homepage_title = "Template data repository"
+description = "Standardised template for mysociety data repositories"
+intro = "Download published datasets and explore their supporting analysis."
+base_url = "/template_data_repo"
+canonical_url = "https://pages.mysociety.org/template_data_repo"
+source_url = "https://github.com/mysociety/template_data_repo"
+output_dir = "_site"
+accent_colour = "#4faded"
+
+[tool.dataset.site.downloads]
+gate = "soft"
+survey = "6876792/Data-usage"
+form_header = "Can you help us with funding by telling us more about yourself?"
+show_code_examples = true
+show_subscription = true
+
+[tool.dataset.site.analysis]
+enabled = true
+bundle_dir = "_render/site/analysis"
