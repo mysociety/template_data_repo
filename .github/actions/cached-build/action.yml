@@ -1,0 +1,46 @@
+name: Cached build
+description: Build the app image from the repository Docker Compose file
+inputs:
+  registry:
+    description: Container registry
+    default: ghcr.io
+  github_token:
+    description: Token used when pushing
+    default: ""
+  branch:
+    description: Cache branch
+    required: true
+  docker_compose_file:
+    description: Docker Compose file
+    default: docker-compose.yml
+  docker_compose_file_app:
+    description: Docker Compose service
+    default: app
+  push_to_registry:
+    description: Whether to push the built image
+    default: "true"
+runs:
+  using: composite
+  steps:
+    - name: Build app from docker-compose
+      shell: bash
+      env:
+        COMPOSE_FILE: ${{ inputs.docker_compose_file }}
+        COMPOSE_APP: ${{ inputs.docker_compose_file_app }}
+      run: docker compose -f "$COMPOSE_FILE" build "$COMPOSE_APP"
+    - name: Log in to the container registry
+      if: inputs.push_to_registry == 'true'
+      uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+      with:
+        registry: ${{ inputs.registry }}
+        username: ${{ github.actor }}
+        password: ${{ inputs.github_token }}
+    - name: Push app image
+      if: inputs.push_to_registry == 'true'
+      shell: bash
+      env:
+        REGISTRY: ${{ inputs.registry }}
+        IMAGE_NAME: ${{ github.repository }}
+      run: |
+        docker tag "$IMAGE_NAME" "$REGISTRY/$IMAGE_NAME"
+        docker push "$REGISTRY/$IMAGE_NAME"
